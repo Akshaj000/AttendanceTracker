@@ -1,3 +1,19 @@
+async function loginUser(email, password) {
+    const response = await fetch("http://localhost:8000/api/login/", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+        return response.json();
+    } else {
+        return {};
+    }
+}
+
 async function getUser(accessToken){
     const response = await fetch("http://localhost:8000/api/user/", {
         method: "GET",
@@ -45,7 +61,7 @@ async function refreshToken(refreshToken) {
 
 
 async function recordAttendance(accessToken, key) {
-const response = await fetch("http://localhost:8000/api/session/record/", {
+    const response = await fetch("http://localhost:8000/api/session/record/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -54,4 +70,19 @@ const response = await fetch("http://localhost:8000/api/session/record/", {
         body: JSON.stringify({ key }),
     });
     return response.json();
+}
+
+async function createSession(accessToken, sessionData) {
+    const response = await fetch('http://localhost:8000/api/session/create/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(sessionData),
+    });
+    if(response.status == 200){
+        return response.json()
+    }
+    return {}
 }

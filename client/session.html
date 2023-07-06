@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Session</title>
+    <link rel="stylesheet" type="text/css" href="session.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Session</h1>
+        <form id="sessionForm">
+            <label for="name">Session Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="startTime">Start Time:</label>
+            <input type="datetime-local" id="startTime" name="startTime" required>
+            <label for="endTime">End Time:</label>
+            <input type="datetime-local" id="endTime" name="endTime" required>
+            <div class="form-button-group">
+                <button type="submit">Create</button>
+                <div id="logout-button">
+                  <button id="logout-btn">Logout</button>
+                </div>
+              </div>
+        </form>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="session.js"></script>
+    <script src="utils.js"></script>
+</body>
+</html>
