@@ -17,7 +17,7 @@ async function loginUser(email, password) {
 }
 
 async function getUser(accessToken){
-    const response = await fetch(`${ENDPOINT}/user/`, {
+    const response = await fetch(`${ENDPOINT}/me/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
