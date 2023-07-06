@@ -1,5 +1,7 @@
+const ENDPOINT = "http://localhost:8000/api";
+
 async function loginUser(email, password) {
-    const response = await fetch("http://localhost:8000/api/login/", {
+    const response = await fetch(`${ENDPOINT}/login/`, {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
@@ -15,7 +17,7 @@ async function loginUser(email, password) {
 }
 
 async function getUser(accessToken){
-    const response = await fetch("http://localhost:8000/api/user/", {
+    const response = await fetch(`${ENDPOINT}/user/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -30,7 +32,7 @@ async function getUser(accessToken){
 }
 
 async function verifyToken(accessToken) {
-    const response = await fetch("http://localhost:8000/api/token/verify/", {
+    const response = await fetch(`${ENDPOINT}/token/verify/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -45,7 +47,7 @@ async function verifyToken(accessToken) {
   }
   
 async function refreshToken(refreshToken) {
-    const response = await fetch("http://localhost:8000/api/token/refresh/", {
+    const response = await fetch(`${ENDPOINT}/token/refresh/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -61,7 +63,7 @@ async function refreshToken(refreshToken) {
 
 
 async function recordAttendance(accessToken, key) {
-    const response = await fetch("http://localhost:8000/api/session/record/", {
+    const response = await fetch(`${ENDPOINT}/session/record/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -73,7 +75,7 @@ async function recordAttendance(accessToken, key) {
 }
 
 async function createSession(accessToken, sessionData) {
-    const response = await fetch('http://localhost:8000/api/session/create/', {
+    const response = await fetch(`${ENDPOINT}/session/create/`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

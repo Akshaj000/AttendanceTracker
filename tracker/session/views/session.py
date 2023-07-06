@@ -11,7 +11,7 @@ class CreateSession(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         data = request.data
-        if not request.user.is_staff:
+        if not request.user.is_staff or not request.user.is_superuser:
             return Response({'message': 'You are not allowed to perform this action'}, status=401)
         for key in ['name', 'start_time', 'end_time']:
             if key not in data:
