@@ -1,6 +1,5 @@
 from dotenv import load_dotenv
 import time
-import nmap
 
 
 # Load environment variables from .env file

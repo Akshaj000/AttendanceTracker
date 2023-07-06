@@ -4,5 +4,5 @@ from .device import Device
 
 __all__ = [
     'Log',
-    'Device',
+    'Device'
 ]
