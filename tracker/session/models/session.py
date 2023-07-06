@@ -17,7 +17,7 @@ class Session(models.Model):
         verbose_name_plural = 'Sessions'
 
     def __str__(self):
-        return f"{self.name} ({self.start_time} - {self.end_time})"
+        return f"{self.name} [{self.key}] {self.start_time}"
 
 
 __all__ = [

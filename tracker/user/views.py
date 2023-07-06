@@ -1,26 +1,23 @@
-from rest_framework import status
+from rest_framework import generics
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework_simplejwt.tokens import RefreshToken
-from django.contrib.auth import authenticate
+from rest_framework.permissions import IsAuthenticated
 
 
-class UserLoginView(APIView):
-    def post(self, request):
-        email = request.data.get('email')
-        password = request.data.get('password')
-        user = authenticate(request, email=email, password=password)
+class MeView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
 
-        if user:
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                'access': str(refresh.access_token),
-                'refresh': str(refresh),
-            })
-        else:
-            return Response({'error': 'Invalid email or password.'}, status=status.HTTP_401_UNAUTHORIZED)
+    def get(self, request, *args, **kwargs):
+        if not request.user:
+            return Response({'message': 'You are not logged in'}, status=401)
+        return Response({
+            'email': request.user.email,
+            'username': request.user.username,
+            'name': request.user.name,
+            'is_staff': request.user.is_staff,
+            'is_superuser': request.user.is_superuser,
+        }, status=200)
 
 
 __all__ = [
-    'UserLoginView',
+    'MeView',
 ]

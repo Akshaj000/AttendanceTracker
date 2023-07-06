@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 from rest_framework import generics
 from rest_framework.response import Response
@@ -12,7 +13,7 @@ class RecordAttendance(generics.CreateAPIView):
         from session.models import Session, Record
         try:
             session = Session.objects.get(key=data['key'])
-        except Session.DoesNotExist:
+        except ValidationError or Session.DoesNotExist:
             return Response({'message': 'Session not found'}, status=404)
         if timezone.now() < session.start_time:
             return Response({'message': 'Session not started yet'}, status=400)
