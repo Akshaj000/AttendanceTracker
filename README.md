@@ -24,4 +24,5 @@ The client app is a web application that provides an interface for staff and stu
   Manage attendance records.
 - Students:
   Record attendance by marking their presence for specific sessions.
-  The client app utilizes the REST endpoints provided by the tracker app to communicate with the backend and perform the required actions.
+    
+The client app utilizes the REST endpoints provided by the tracker app to communicate with the backend and perform the required actions.
