@@ -49,5 +49,8 @@ if __name__ == "__main__":
         for device in devices:
             print(f"IP  : {device['ip']}")
             print(f"MAC : {device['mac']}")
-            log_event(device, tokens['access'])
-        time.sleep(5)
+            try:
+                log_event(device, tokens['access'])
+            except Exception:
+                pass
+        time.sleep(15)
