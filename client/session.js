@@ -4,7 +4,7 @@ let access = localStorage.getItem('accessToken');
 let refresh = localStorage.getItem('refreshToken');
 
 function handleSessionCreation(sessionData) {
-  verifyToken(access)
+  return verifyToken(access)
     .then((isValid) => {
       if (isValid) {
         return createSession(access, sessionData);
@@ -23,26 +23,12 @@ function handleSessionCreation(sessionData) {
           } else {
             throw new Error('Token refresh failed');
           }
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          throw new Error('Session creation failed');
         });
-    })
-    .then((data) => {
-      if (data.key) {
-        
-        showAlert(`Session created with key: ${data.key}`);
-      } else {
-        showAlert('Something went wrong. Please try again.');
-      }
-    })
-    .catch((error) => {
-      console.error('Error:', error);
     });
 }
 
-sessionForm.addEventListener('submit', (event) => {
+
+sessionForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const name = document.getElementById('name').value;
   const startTime = new Date(document.getElementById('startTime').value);
@@ -65,7 +51,13 @@ sessionForm.addEventListener('submit', (event) => {
       minute: endTime.getMinutes(),
     },
   };
-  handleSessionCreation(sessionData);
+
+  try {
+    let data = await handleSessionCreation(sessionData);
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
 });
 
 logoutButton.addEventListener('click', () => {

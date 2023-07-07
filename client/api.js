@@ -83,11 +83,11 @@ async function createSession(accessToken, sessionData) {
       },
       body: JSON.stringify(sessionData),
     });
-    if(response.status == 200){
-        return response.json()
-    }
-    return {}
-}
+  
+    const jsonData = await response.json();
+    return jsonData || {};
+  }
+  
 
 async function listSessions(accessToken) {
     const response = await fetch(`${ENDPOINT}/sessions/get/`, {
@@ -97,8 +97,7 @@ async function listSessions(accessToken) {
         Authorization: `Bearer ${accessToken}`,
       }
     });
-    if(response.status == 200){
-        return response.json()
-    }
+    const jsonData = await response.json();
+    return jsonData || [];
     return []
 }
