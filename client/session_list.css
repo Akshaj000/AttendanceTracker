@@ -1,0 +1,44 @@
+body 
+{
+  background: #000;
+  color:  #fafafa;
+}
+.card {
+    border: 1px solid #fafafa;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    margin: 5px 0;
+    color: #eeeeee;
+  }
+  
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+
+
+  .card {
+    width: calc(33.33% - 10px); /* Display 3 cards per row for larger screens */
+    margin-bottom: 10px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .card {
+      width: calc(50% - 10px); /* Display 2 cards per row for medium screens */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .card {
+      width: 100%; /* Display 1 card per row for small screens */
+    }
+  }
+  
