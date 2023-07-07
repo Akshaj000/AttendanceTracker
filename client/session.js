@@ -73,5 +73,5 @@ logoutButton.addEventListener('click', () => {
   localStorage.removeItem('refreshToken');
   access = null;
   refresh = null;
-  window.location.href = 'login.html';
+  window.location.href = 'index.html';
 });
