@@ -50,4 +50,4 @@ if __name__ == "__main__":
             print(f"IP  : {device['ip']}")
             print(f"MAC : {device['mac']}")
             log_event(device, tokens['access'])
-        time.sleep(60)
+        time.sleep(5)
