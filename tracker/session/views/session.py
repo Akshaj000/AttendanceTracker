@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from django.utils import timezone
 from django.utils.timezone import make_aware
 
 from rest_framework import generics
@@ -34,6 +36,29 @@ class CreateSession(generics.CreateAPIView):
         }, status=200)
 
 
+class GetSessionsView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_staff or not request.user.is_superuser:
+            return Response({'message': 'You are not allowed to perform this action'}, status=401)
+        from session.models import Session
+        sessions = Session.objects.all()
+        data = []
+        for session in sessions:
+            is_available = timezone.now() >= session.start_time and timezone.now() <= session.end_time
+            data.append({
+                'name': session.name,
+                'start_time': session.start_time,
+                'end_time': session.end_time,
+                'instructor': session.instructor.email,
+                'key': session.key,
+                'is_available': is_available
+            })
+        return Response(data, status=200)
+
+
 __all__ = [
-    'CreateSession'
+    'CreateSession',
+    'GetSessionsView'
 ]
