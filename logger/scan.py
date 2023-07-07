@@ -53,4 +53,4 @@ if __name__ == "__main__":
                 log_event(device, tokens['access'])
             except Exception:
                 pass
-        time.sleep(15)
+        time.sleep(17)
