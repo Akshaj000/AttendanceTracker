@@ -55,6 +55,8 @@ sessionForm.addEventListener('submit', async (event) => {
   try {
     let data = await handleSessionCreation(sessionData);
     console.log(data);
+    document.getElementById("sessionKeyField").style.display = "block";
+    document.getElementById("sessionKey").value = data?.key
   } catch (error) {
     console.error('Error:', error);
   }
