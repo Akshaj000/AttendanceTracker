@@ -88,3 +88,17 @@ async function createSession(accessToken, sessionData) {
     }
     return {}
 }
+
+async function listSessions(accessToken) {
+    const response = await fetch(`${ENDPOINT}/sessions/get/`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      }
+    });
+    if(response.status == 200){
+        return response.json()
+    }
+    return []
+}
